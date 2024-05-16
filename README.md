@@ -7,4 +7,4 @@
 
 ## - ERD
 
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/438cbd46-14e9-4aaa-950e-9aed3ee8bc71)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/36bf76f0-9685-4ffd-9efd-6fe58ce37006)
