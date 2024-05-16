@@ -60,8 +60,8 @@ public class ScheduleRepository {
                 Long id = rs.getLong("id");
                 String toDoTitle = rs.getString("to_do_title");
                 String whatToDo = rs.getString("What_to_do");
-                String manager = String.valueOf(rs.getInt("manager"));
-                Integer password = Integer.valueOf(rs.getString("password"));
+                String manager = rs.getString("manager");
+                Integer password =(rs.getInt("password"));
                 LocalDate dateCreated = rs.getDate("Date_Created").toLocalDate();
                 return new ScheduleResponseDto(id, toDoTitle, whatToDo, manager, password, dateCreated);
             }
