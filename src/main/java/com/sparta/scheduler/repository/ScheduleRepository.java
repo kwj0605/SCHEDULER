@@ -54,19 +54,19 @@ public class ScheduleRepository {
 
     public ScheduleResponseDto findSchedule(Long id) {
         String sql = "SELECT * FROM schedule WHERE id = ?";
-        ScheduleResponseDto scheduleResponseDto = jdbcTemplate.queryForObject(sql, new RowMapper<ScheduleResponseDto>() {
-            @Override
-            public ScheduleResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Long id = rs.getLong("id");
+        return jdbcTemplate.query(sql, rs -> {
+            if (rs.next()) {
+                Long sid = rs.getLong("id");
                 String toDoTitle = rs.getString("to_do_title");
                 String whatToDo = rs.getString("What_to_do");
                 String manager = rs.getString("manager");
                 Integer password = rs.getInt("password");
                 LocalDate dateCreated = rs.getDate("Date_Created").toLocalDate();
-                return new ScheduleResponseDto(id, toDoTitle, whatToDo, manager, password, dateCreated);
+                return new ScheduleResponseDto(sid, toDoTitle, whatToDo, manager, password, dateCreated);
+            } else {
+                return null;
             }
         }, id);
-        return scheduleResponseDto;
     }
 
     public List<ScheduleResponseDto> findAll() {
