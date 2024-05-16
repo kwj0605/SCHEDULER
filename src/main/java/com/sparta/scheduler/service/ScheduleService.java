@@ -32,6 +32,11 @@ public class ScheduleService {
         return scheduleResponseDto;
     }
 
+    public ScheduleResponseDto getChooseSchedule(Long id) {
+        // DB 조회
+        return scheduleRepository.findSchedule(id);
+    }
+
     public List<ScheduleResponseDto> getSchedule() {
         // DB 조회
         return scheduleRepository.findAll();
@@ -41,7 +46,7 @@ public class ScheduleService {
         // 해당 메모가 DB에 존재하는지 확인
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null) {
-            // memo 내용 수정
+            // schedule 내용 수정
             scheduleRepository.update(id, requestDto, schedule);
 
             return id;
@@ -54,7 +59,7 @@ public class ScheduleService {
         // 해당 메모가 DB에 존재하는지 확인
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null) {
-            // memo 삭제
+            // schedule 삭제
             scheduleRepository.delete(id);
 
             return id;
