@@ -25,6 +25,8 @@ public class ScheduleRepository {
     }
 
 
+
+
     public Schedule save(Schedule schedule) {
         // DB 저장
         KeyHolder keyHolder = new GeneratedKeyHolder(); // 기본 키를 반환받기 위한 객체
@@ -67,4 +69,33 @@ public class ScheduleRepository {
             }
         });
     }
+
+    public void update(Long id, ScheduleRequestDto requestDto) {
+        String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, password = ? WHERE id = ?";
+        jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), requestDto.getPassword(), id);
+    }
+
+
+
+
+    public Schedule findById(Long id) {
+        // DB 조회
+        String sql = "SELECT * FROM schedule WHERE id = ?";
+
+        return jdbcTemplate.query(sql, resultSet -> {
+            if(resultSet.next()) {
+                Schedule schedule = new Schedule();
+                schedule.setToDoTitle(resultSet.getString("to_do_title"));
+                schedule.setWhatToDo(resultSet.getString("What_to_do"));
+                schedule.setManager(resultSet.getString("manager"));
+                schedule.setPassword(resultSet.getInt("password"));
+                schedule.setDateCreated(resultSet.getDate("Date_Created").toLocalDate());
+                return schedule;
+            } else {
+                return null;
+            }
+        }, id);
+    }
+
+
 }

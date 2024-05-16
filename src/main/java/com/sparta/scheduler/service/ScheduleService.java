@@ -37,4 +37,17 @@ public class ScheduleService {
         // DB 조회
         return scheduleRepository.findAll();
     }
+
+    public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
+        // 해당 메모가 DB에 존재하는지 확인
+        Schedule schedule = scheduleRepository.findById(id);
+        if(schedule != null) {
+            // memo 내용 수정
+            scheduleRepository.update(id, requestDto);
+
+            return id;
+        } else {
+            throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다.");
+        }
+    }
 }
