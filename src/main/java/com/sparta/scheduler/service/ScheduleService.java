@@ -42,9 +42,9 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
-        // 해당 메모가 DB에 존재하는지 확인
-        Schedule schedule = scheduleRepository.findById(id);
+    public Long updateSchedule(Long id, Integer password, ScheduleRequestDto requestDto) {
+        // 해당 메모가 DB에 존재하는지 확인, 비밀번호 일치 확인
+        Schedule schedule = scheduleRepository.findById(id, password);
         if(schedule != null) {
             // schedule 내용 수정
             scheduleRepository.update(id, requestDto, schedule);
@@ -55,9 +55,9 @@ public class ScheduleService {
         }
     }
 
-    public Long deleteSchedule(Long id) {
+    public Long deleteSchedule(Long id, Integer password) {
         // 해당 메모가 DB에 존재하는지 확인
-        Schedule schedule = scheduleRepository.findById(id);
+        Schedule schedule = scheduleRepository.findById(id, password);
         if(schedule != null) {
             // schedule 삭제
             scheduleRepository.delete(id);

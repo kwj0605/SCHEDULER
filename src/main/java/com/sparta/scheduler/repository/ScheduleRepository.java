@@ -88,8 +88,8 @@ public class ScheduleRepository {
     }
 
     public void update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
-        String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, password = ?, Date_Created = ? WHERE id = ?";
-        jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), requestDto.getPassword(), schedule.getDateCreated(), id);
+        String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, Date_Created = ? WHERE id = ?";
+        jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), schedule.getDateCreated(), id);
     }
 
     public void delete(Long id) {
@@ -97,9 +97,9 @@ public class ScheduleRepository {
         jdbcTemplate.update(sql, id);
     }
 
-    public Schedule findById(Long id) {
+    public Schedule findById(Long id, Integer password) {
         // DB 조회
-        String sql = "SELECT * FROM schedule WHERE id = ?";
+        String sql = "SELECT * FROM schedule WHERE id = ? AND password = ?";
 
         return jdbcTemplate.query(sql, resultSet -> {
             if(resultSet.next()) {
@@ -113,6 +113,6 @@ public class ScheduleRepository {
             } else {
                 return null;
             }
-        }, id);
+        }, id, password);
     }
 }
