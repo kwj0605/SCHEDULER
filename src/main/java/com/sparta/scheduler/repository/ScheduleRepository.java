@@ -51,7 +51,7 @@ public class ScheduleRepository {
     }
 
     public List<ScheduleResponseDto> findAll() {
-        String sql = "SELECT * FROM memo";
+        String sql = "SELECT * FROM schedule";
 
         return jdbcTemplate.query(sql, new RowMapper<ScheduleResponseDto>() {
             @Override
