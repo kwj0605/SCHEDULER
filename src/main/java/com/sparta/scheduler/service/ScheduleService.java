@@ -2,6 +2,7 @@ package com.sparta.scheduler.service;
 
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
+import com.sparta.scheduler.dto.UpdateDto;
 import com.sparta.scheduler.entity.Schedule;
 import com.sparta.scheduler.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +43,15 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public Long updateSchedule(Long id, Integer password, ScheduleRequestDto requestDto) {
+    public UpdateDto updateSchedule(Long id, Integer password, ScheduleRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인, 비밀번호 일치 확인
         Schedule schedule = scheduleRepository.findById(id, password);
         if(schedule != null) {
             // schedule 내용 수정
-            scheduleRepository.update(id, requestDto, schedule);
+            return scheduleRepository.update(id, requestDto, schedule);
 
-            return id;
         } else {
-            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않거나 비밀번호가 일치하지 않습니다.");
         }
     }
 
@@ -64,7 +64,7 @@ public class ScheduleService {
 
             return id;
         } else {
-            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않거나 비밀번호가 일치하지 않습니다..");
         }
     }
 }

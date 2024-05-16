@@ -2,6 +2,7 @@ package com.sparta.scheduler.controller;
 
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
+import com.sparta.scheduler.dto.UpdateDto;
 import com.sparta.scheduler.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ScheduleController {
     }
 
     @PutMapping("/schedule/{id}/{password}")
-    public Long updateSchedule(@PathVariable Long id, @PathVariable Integer password, @RequestBody ScheduleRequestDto requestDto) {
+    public UpdateDto updateSchedule(@PathVariable Long id, @PathVariable Integer password, @RequestBody ScheduleRequestDto requestDto) {
         return scheduleService.updateSchedule(id, password, requestDto);
     }
 

@@ -2,6 +2,7 @@ package com.sparta.scheduler.repository;
 
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
+import com.sparta.scheduler.dto.UpdateDto;
 import com.sparta.scheduler.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -87,9 +88,20 @@ public class ScheduleRepository {
         });
     }
 
-    public void update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
+    public UpdateDto update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
         String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, Date_Created = ? WHERE id = ?";
         jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), schedule.getDateCreated(), id);
+        sql = "SELECT * FROM schedule WHERE id = ?";
+        return jdbcTemplate.query(sql, rs -> {
+            if (rs.next()) {
+                String toDoTitle = rs.getString("to_do_title");
+                String whatToDo = rs.getString("What_to_do");
+                String manager = rs.getString("manager");
+                return new UpdateDto(toDoTitle, whatToDo, manager);
+            } else {
+                return null;
+            }
+        }, id);
     }
 
     public void delete(Long id) {
