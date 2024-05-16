@@ -32,7 +32,6 @@ public class ScheduleService {
         return scheduleResponseDto;
     }
 
-
     public List<ScheduleResponseDto> getSchedule() {
         // DB 조회
         return scheduleRepository.findAll();
@@ -43,11 +42,24 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null) {
             // memo 내용 수정
-            scheduleRepository.update(id, requestDto);
+            scheduleRepository.update(id, requestDto, schedule);
 
             return id;
         } else {
-            throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다.");
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
+        }
+    }
+
+    public Long deleteSchedule(Long id) {
+        // 해당 메모가 DB에 존재하는지 확인
+        Schedule schedule = scheduleRepository.findById(id);
+        if(schedule != null) {
+            // memo 삭제
+            scheduleRepository.delete(id);
+
+            return id;
+        } else {
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
         }
     }
 }

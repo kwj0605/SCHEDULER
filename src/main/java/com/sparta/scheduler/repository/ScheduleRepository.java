@@ -70,13 +70,15 @@ public class ScheduleRepository {
         });
     }
 
-    public void update(Long id, ScheduleRequestDto requestDto) {
-        String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, password = ? WHERE id = ?";
-        jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), requestDto.getPassword(), id);
+    public void update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
+        String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, password = ?, Date_Created = ? WHERE id = ?";
+        jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), requestDto.getPassword(), schedule.getDateCreated(), id);
     }
 
-
-
+    public void delete(Long id) {
+        String sql = "DELETE FROM schedule WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 
     public Schedule findById(Long id) {
         // DB 조회
@@ -96,6 +98,4 @@ public class ScheduleRepository {
             }
         }, id);
     }
-
-
 }
