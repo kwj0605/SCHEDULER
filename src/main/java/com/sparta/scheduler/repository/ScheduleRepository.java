@@ -2,7 +2,7 @@ package com.sparta.scheduler.repository;
 
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
-import com.sparta.scheduler.dto.UpdateDto;
+import com.sparta.scheduler.dto.UpdateResponseDto;
 import com.sparta.scheduler.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -88,7 +88,7 @@ public class ScheduleRepository {
         });
     }
 
-    public UpdateDto update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
+    public UpdateResponseDto update(Long id, ScheduleRequestDto requestDto, Schedule schedule) {
         String sql = "UPDATE schedule SET to_do_title = ?, What_to_do = ?, manager = ?, Date_Created = ? WHERE id = ?";
         jdbcTemplate.update(sql, requestDto.getToDoTitle(), requestDto.getWhatToDo(), requestDto.getManager(), schedule.getDateCreated(), id);
         sql = "SELECT * FROM schedule WHERE id = ?";
@@ -97,7 +97,7 @@ public class ScheduleRepository {
                 String toDoTitle = rs.getString("to_do_title");
                 String whatToDo = rs.getString("What_to_do");
                 String manager = rs.getString("manager");
-                return new UpdateDto(toDoTitle, whatToDo, manager);
+                return new UpdateResponseDto(toDoTitle, whatToDo, manager);
             } else {
                 return null;
             }
@@ -109,7 +109,7 @@ public class ScheduleRepository {
         jdbcTemplate.update(sql, id);
     }
 
-    public Schedule findById(Long id, Integer password) {
+    public Schedule findByIdAndPw(Long id, Integer password) {
         // DB 조회
         String sql = "SELECT * FROM schedule WHERE id = ? AND password = ?";
 
