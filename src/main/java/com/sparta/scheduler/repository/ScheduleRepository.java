@@ -2,7 +2,6 @@ package com.sparta.scheduler.repository;
 
 import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
-import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
 import com.sparta.scheduler.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +25,14 @@ public class ScheduleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-
-
-    public Schedule save(Schedule schedule) {
+    public void save(Schedule schedule) {
         // DB 저장
         KeyHolder keyHolder = new GeneratedKeyHolder(); // 기본 키를 반환받기 위한 객체
 
         String sql = "INSERT INTO schedule (to_do_title, What_to_do, manager, password, Date_Created) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update( con -> {
-                    PreparedStatement preparedStatement = con.prepareStatement(sql,
-                            Statement.RETURN_GENERATED_KEYS);
+        jdbcTemplate.update(con -> {
+                    PreparedStatement preparedStatement =
+                            con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
                     preparedStatement.setString(1, schedule.getToDoTitle());
                     preparedStatement.setString(2, schedule.getWhatToDo());
@@ -51,7 +47,6 @@ public class ScheduleRepository {
         Long id = keyHolder.getKey().longValue();
         schedule.setId(id);
 
-        return schedule;
     }
 
     public CreateViewResponseDto findSchedule(Long id) {
@@ -113,7 +108,7 @@ public class ScheduleRepository {
         String sql = "SELECT * FROM schedule WHERE id = ? AND password = ?";
 
         return jdbcTemplate.query(sql, resultSet -> {
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 Schedule schedule = new Schedule();
                 schedule.setToDoTitle(resultSet.getString("to_do_title"));
                 schedule.setWhatToDo(resultSet.getString("What_to_do"));

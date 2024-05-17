@@ -2,7 +2,6 @@ package com.sparta.scheduler.controller;
 
 import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
-import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
 import com.sparta.scheduler.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;

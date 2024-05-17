@@ -2,7 +2,6 @@ package com.sparta.scheduler.service;
 
 import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
-import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
 import com.sparta.scheduler.entity.Schedule;
 import com.sparta.scheduler.repository.ScheduleRepository;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service    // bean에 등록
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
@@ -26,7 +25,7 @@ public class ScheduleService {
         Schedule schedule = new Schedule(requestDto);
 
         // DB 저장
-        Schedule saveSchedule = scheduleRepository.save(schedule);
+        scheduleRepository.save(schedule);
 
         // Entity -> CreateResponseDto
         CreateViewResponseDto createResponseDto = new CreateViewResponseDto(schedule);
@@ -47,7 +46,7 @@ public class ScheduleService {
     public UpdateResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인, 비밀번호 일치 확인
         Schedule schedule = scheduleRepository.findByIdAndPw(id, requestDto.getPassword());
-        if(schedule != null) {
+        if (schedule != null) {
             // schedule 내용 수정
             return scheduleRepository.update(id, requestDto, schedule);
 
@@ -59,7 +58,7 @@ public class ScheduleService {
     public Long deleteSchedule(Long id, Integer password) {
         // 해당 메모가 DB에 존재하는지 확인
         Schedule schedule = scheduleRepository.findByIdAndPw(id, password);
-        if(schedule != null) {
+        if (schedule != null) {
             // schedule 삭제
             scheduleRepository.delete(id);
 
