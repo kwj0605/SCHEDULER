@@ -14,5 +14,5 @@
 ![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/0307151a-9fff-4c57-9c4e-e22515463841)
 ![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/ebec000d-e785-4f71-b2f4-52d3f3c4446c)
 ![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/555afe3e-fadd-418b-b9bf-fc07439c5d9f)
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/973238c6-b1f2-49ae-837a-5760bf0b2718)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/b772b3ad-de2e-4a39-b447-d65f290db182)
 ![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/8b977545-afcf-465a-9c1a-50b702453868)
