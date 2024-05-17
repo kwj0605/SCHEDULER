@@ -1,4 +1,4 @@
-# Scheduler
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/dd2d948e-0a50-4ee9-9151-83a9963a7d9c)# Scheduler
 
 ## - Use Case Diagram
 
@@ -11,8 +11,8 @@
 
 ## - API 명세서
 
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/0307151a-9fff-4c57-9c4e-e22515463841)
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/ebec000d-e785-4f71-b2f4-52d3f3c4446c)
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/555afe3e-fadd-418b-b9bf-fc07439c5d9f)
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/b772b3ad-de2e-4a39-b447-d65f290db182)
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/8b977545-afcf-465a-9c1a-50b702453868)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/fc706645-764d-4672-8dc2-9752e4dd42f3)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/5a7dff4d-c7dc-4019-b9ec-705440ed4bcd)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/5dc56fa9-fedb-4c16-8163-7b842be9e5cb)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/14a6cf9e-6d0f-4488-9c23-0d94326fcd95)
+![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/0e155e9b-94d3-46ed-a354-079255658a80)
