@@ -1,5 +1,6 @@
 package com.sparta.scheduler.repository;
 
+import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
@@ -53,7 +54,7 @@ public class ScheduleRepository {
         return schedule;
     }
 
-    public ScheduleResponseDto findSchedule(Long id) {
+    public CreateViewResponseDto findSchedule(Long id) {
         String sql = "SELECT * FROM schedule WHERE id = ?";
         return jdbcTemplate.query(sql, rs -> {
             if (rs.next()) {
@@ -61,29 +62,27 @@ public class ScheduleRepository {
                 String toDoTitle = rs.getString("to_do_title");
                 String whatToDo = rs.getString("What_to_do");
                 String manager = rs.getString("manager");
-                Integer password = rs.getInt("password");
                 LocalDate dateCreated = rs.getDate("Date_Created").toLocalDate();
-                return new ScheduleResponseDto(sid, toDoTitle, whatToDo, manager, password, dateCreated);
+                return new CreateViewResponseDto(sid, toDoTitle, whatToDo, manager, dateCreated);
             } else {
                 return null;
             }
         }, id);
     }
 
-    public List<ScheduleResponseDto> findAll() {
-        String sql = "SELECT * FROM schedule";
+    public List<CreateViewResponseDto> findAll() {
+        String sql = "SELECT * FROM schedule order by Date_Created desc";
 
-        return jdbcTemplate.query(sql, new RowMapper<ScheduleResponseDto>() {
+        return jdbcTemplate.query(sql, new RowMapper<CreateViewResponseDto>() {
             @Override
-            public ScheduleResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public CreateViewResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
                 // SQL 의 결과로 받아온 schedule 데이터들을 scheduleResponseDto 타입으로 변환해줄 메서드
                 Long id = rs.getLong("id");
                 String toDoTitle = rs.getString("to_do_title");
                 String whatToDo = rs.getString("What_to_do");
                 String manager = rs.getString("manager");
-                Integer password =(rs.getInt("password"));
                 LocalDate dateCreated = rs.getDate("Date_Created").toLocalDate();
-                return new ScheduleResponseDto(id, toDoTitle, whatToDo, manager, password, dateCreated);
+                return new CreateViewResponseDto(id, toDoTitle, whatToDo, manager, dateCreated);
             }
         });
     }

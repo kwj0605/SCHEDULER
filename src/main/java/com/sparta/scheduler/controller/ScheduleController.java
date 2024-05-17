@@ -1,6 +1,6 @@
 package com.sparta.scheduler.controller;
 
-import com.sparta.scheduler.dto.CreateResponseDto;
+import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
@@ -22,17 +22,17 @@ public class ScheduleController {
     }
 
     @PostMapping("/schedule")
-    public CreateResponseDto schedule(@RequestBody ScheduleRequestDto requestDto) {
+    public CreateViewResponseDto schedule(@RequestBody ScheduleRequestDto requestDto) {
         return scheduleService.createSchedule(requestDto);
     }
 
     @GetMapping("/schedule/{id}")
-    public ScheduleResponseDto chooseSchedule(@PathVariable Long id) {
+    public CreateViewResponseDto chooseSchedule(@PathVariable Long id) {
         return scheduleService.getChooseSchedule(id);
     }
 
     @GetMapping("/schedule")
-    public List<ScheduleResponseDto> getschedule() {
+    public List<CreateViewResponseDto> getschedule() {
         return scheduleService.getSchedule();
     }
 

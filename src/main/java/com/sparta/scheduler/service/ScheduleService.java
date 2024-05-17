@@ -1,6 +1,6 @@
 package com.sparta.scheduler.service;
 
-import com.sparta.scheduler.dto.CreateResponseDto;
+import com.sparta.scheduler.dto.CreateViewResponseDto;
 import com.sparta.scheduler.dto.ScheduleRequestDto;
 import com.sparta.scheduler.dto.ScheduleResponseDto;
 import com.sparta.scheduler.dto.UpdateResponseDto;
@@ -21,7 +21,7 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    public CreateResponseDto createSchedule(ScheduleRequestDto requestDto) {
+    public CreateViewResponseDto createSchedule(ScheduleRequestDto requestDto) {
         // RequestDto -> Entity
         Schedule schedule = new Schedule(requestDto);
 
@@ -29,17 +29,17 @@ public class ScheduleService {
         Schedule saveSchedule = scheduleRepository.save(schedule);
 
         // Entity -> CreateResponseDto
-        CreateResponseDto createResponseDto = new CreateResponseDto(schedule);
+        CreateViewResponseDto createResponseDto = new CreateViewResponseDto(schedule);
 
         return createResponseDto;
     }
 
-    public ScheduleResponseDto getChooseSchedule(Long id) {
+    public CreateViewResponseDto getChooseSchedule(Long id) {
         // DB 조회
         return scheduleRepository.findSchedule(id);
     }
 
-    public List<ScheduleResponseDto> getSchedule() {
+    public List<CreateViewResponseDto> getSchedule() {
         // DB 조회
         return scheduleRepository.findAll();
     }
