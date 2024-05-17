@@ -1,4 +1,4 @@
-![image](https://github.com/kwj0605/SCHEDULER/assets/107970778/dd2d948e-0a50-4ee9-9151-83a9963a7d9c)# Scheduler
+# Scheduler
 
 ## - Use Case Diagram
 
